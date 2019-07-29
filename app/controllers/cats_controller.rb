@@ -1,2 +1,52 @@
 class CatsController < ApplicationController
+
+before_action :find_cat, only: [:show, :edit, :update, :destroy]
+
+def index
+  @cats = Cat.all
+end
+
+def show
+end
+
+def new
+  @cat = Cat.new
+end
+
+def create
+  @cat = Cat.create(cat_params)
+  redirect_to @cat
+end
+
+def edit
+
+end
+
+def update
+  @cat.update(cat_params)
+  redirect_to @cat
+
+end
+
+def destroy
+  @cat.destroy
+  redirect_to cats_path
+
+end
+
+private
+
+def cat_params
+  params.require(:cat).permit(:name, :age, :city, :breed, :bio, :temperament, :picture)
+
+end
+
+def find_cat
+
+
+  @cat = Cat.find(params[:id])
+@cat = Cat.find(params[:id])
+@cat = Cat.find(params[:id])
+@cat = Cat.find(params[:id])
+end
 end

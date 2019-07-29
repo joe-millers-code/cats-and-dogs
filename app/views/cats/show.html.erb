@@ -1,0 +1,16 @@
+
+
+<%= image_tag @cat.picture %>
+<%= link_to @cat.name, @cat %>
+<%= @cat.age %>
+<%= @cat.city %>
+<%= @cat.breed %>
+<%= @cat.bio %>
+<%= @cat.temperament %>
+
+
+
+
+
+<%= button_to "Delete a Cat", @cat, method:"destroy" %>
+<%= link_to "Edit a Cat", edit_cat_path(@cat) %>
