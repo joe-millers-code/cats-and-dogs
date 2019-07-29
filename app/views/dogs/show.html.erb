@@ -1,0 +1,15 @@
+<h1>This is the show page for <%= @dog.name %>. </h1>
+
+<%= image_tag @dog.picture %>
+
+<p> Name: <%= @dog.name %> </p>
+<p> Age: <%= @dog.age %> </p>
+<p> City: <%= @dog.city %> </p>
+<p> Breed: <%= @dog.breed %> </p>
+<p> Bio: <%= @dog.bio %> </p>
+<p> Temperament: <%= @dog.temperament %> </p>
+
+<%= link_to "Edit this dog", edit_dog_path %>
+
+<%= link_to "Delete this Dog", dog_path(@dog), method: :delete %>
+ <br><%= link_to "Back to the dog pound!", dogs_path %>
