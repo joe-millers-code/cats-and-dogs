@@ -1,0 +1,43 @@
+<section class="section">
+    <div class="container">
+        
+        <% if flash[:errors] %>
+
+        <ul>
+            <% flash[:errors].each do |err| %>
+            <li><%= err %></li>
+            <%end%>
+        </ul>
+        <% end%>
+
+        <%= form_for @comment do |f| %>
+
+
+            <div class="field">
+                <label class="label"><%= f.label :content %></label>
+                    <div class="control">
+                        <%= f.text_area :content, :class => 'textarea' %>
+                    </div>
+            </div>
+
+            <div class='box'>
+                <%= f.label :dog_id %>
+                <%= f.collection_select(:dog_id, @dogs, :id, :name) %>
+
+                <%= f.label :cat_id %>
+                <%= f.collection_select(:cat_id, @cats, :id, :name) %>
+            </div>
+                
+
+            <div class="columns">
+                <div class="column is-one-fifth">
+                    <%= f.submit :class => 'button is-fullwidth is-primary' %>
+                </div>
+                <div class="column is-one-fifth">
+                    <%= link_to "Cancel", comments_path, :class => 'button is-fullwidth' %>
+                </div>
+            </div>
+
+        <% end %>
+    </div>
+</section>
