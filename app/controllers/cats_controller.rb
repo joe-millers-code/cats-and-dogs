@@ -18,7 +18,13 @@ end
 
 def create
   @cat = Cat.create(cat_params)
-  redirect_to @cat
+  if @cat.valid? 
+    session[:cat_id] = @cat.id 
+    redirect_to dogs_path
+  else 
+    flash[:errors] = @cat.errors.full_messages
+    redirect_to new_cat_path
+  end
 end
 
 def edit
@@ -40,16 +46,12 @@ end
 private
 
 def cat_params
-  params.require(:cat).permit(:name, :age, :city, :breed, :bio, :temperament, :picture)
+  params.require(:cat).permit(:password, :username, :password_confirmation, :name, :age, :city, :breed, :bio, :temperament, :picture)
 
 end
 
 def find_cat
-
-
   @cat = Cat.find(params[:id])
-@cat = Cat.find(params[:id])
-@cat = Cat.find(params[:id])
-@cat = Cat.find(params[:id])
 end
+
 end

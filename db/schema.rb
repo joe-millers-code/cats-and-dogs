@@ -13,6 +13,8 @@
 ActiveRecord::Schema.define(version: 2019_07_29_204554) do
 
   create_table "cats", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
     t.string "name"
     t.integer "age"
     t.string "city"
@@ -35,6 +37,8 @@ ActiveRecord::Schema.define(version: 2019_07_29_204554) do
   end
 
   create_table "dogs", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
     t.string "name"
     t.integer "age"
     t.string "city"
