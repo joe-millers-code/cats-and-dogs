@@ -1,16 +1,35 @@
+<section class="section">
+    <div class="container">
 
 
-<%= image_tag @cat.picture %>
-<%= link_to @cat.name, @cat %>
-<%= @cat.age %>
-<%= @cat.city %>
-<%= @cat.breed %>
-<%= @cat.bio %>
-<%= @cat.temperament %>
+        <h1 class="title is-1">This is the show page for <%= @cat.name %>. </h1>
+
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <%= link_to "Edit this Cat", edit_cat_path, :class => 'button is-fullwidth is-primary' %>
+            </div>
+            <div class="column is-one-fifth">
+                <%= link_to "Cats", cats_path, :class => 'button is-fullwidth is-primary' %>
+            </div>
+            <div class="column is-one-fifth">
+                <%= link_to "Dogs", dogs_path, :class => 'button is-fullwidth is-primary' %>
+            </div>
+            <div class="column is-one-fifth">
+                <%= link_to "Delete this Cat", cat_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
+            </div>
+        </div>
 
 
+        <%= image_tag @cat.picture %>
+
+        <p> Name: <%= @cat.name %> </p>
+        <p> Age: <%= @cat.age %> </p>
+        <p> City: <%= @cat.city %> </p>
+        <p> Breed: <%= @cat.breed %> </p>
+        <p> Bio: <%= @cat.bio %> </p>
+        <p> Temperament: <%= @cat.temperament %> </p>
 
 
-
-<%= button_to "Delete a Cat", @cat, method:"destroy" %>
-<%= link_to "Edit a Cat", edit_cat_path(@cat) %>
+        <%= render 'comments/form' %>
+    </div>
+</section>

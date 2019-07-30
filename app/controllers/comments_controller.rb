@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
-    before before_action :find_comment, only: [:show, :edit, :update, :destroy]
+    before_action :find_comment, only: [:show, :edit, :update, :destroy]
 
     def index
-        @comment = Comment.all
+        @comments = Comment.all
     end
 
     def show
@@ -10,12 +10,17 @@ class CommentsController < ApplicationController
 
     def new
         @comment = Comment.new
+        @dogs = Dog.all
+        @cats = Cat.all
     end
 
     def edit
     end
 
     def create
+        @dogs = Dog.all
+        @cats = Cat.all
+
         @comment = Member.new(comment_params)
         if @comment.valid?
             @comment.save

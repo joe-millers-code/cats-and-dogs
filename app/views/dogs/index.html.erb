@@ -1,13 +1,19 @@
-<h1>This is the index page for dogs! I sleep outside. </h1>
+<section class="section">
+    <div class="container">
 
-<% @dogs.each do |dog| %>
-    <p> Name: <%= link_to dog.name, dog %> </p>
-    <p> Age: <%= dog.age %> </p>
-    <p> City: <%= dog.city %> </p>
-    <p> Breed: <%= dog.breed %> </p>
-    <p> Bio: <%= dog.bio %> </p>
-    <p> Temperament: <%= dog.temperament %> </p>
-<% end %>
+        <h1>This is the index page for dogs! I sleep outside. </h1>
+
+        <%= link_to 'All Cats', cats_path %>
+
+        <% @dogs.each do |dog| %>
+            <p> Name: <%= link_to dog.name, dog %> </p>
+            <p> City: <%= dog.city %> </p>
+            <p> Bio: <%= dog.bio %> </p>
+
+        <% end %>
 
 
-<%= link_to "Create a new dog", new_dog_path %>
+        <%= link_to "Create a new dog", new_dog_path %>
+
+    </div>
+</section>

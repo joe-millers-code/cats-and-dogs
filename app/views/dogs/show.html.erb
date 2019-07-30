@@ -1,15 +1,34 @@
-<h1>This is the show page for <%= @dog.name %>. </h1>
+<section class="section">
+    <div class="container">
 
-<%= image_tag @dog.picture %>
+        <h1 class ='title is-1'>This is the show page for <%= @dog.name %>. </h1>
 
-<p> Name: <%= @dog.name %> </p>
-<p> Age: <%= @dog.age %> </p>
-<p> City: <%= @dog.city %> </p>
-<p> Breed: <%= @dog.breed %> </p>
-<p> Bio: <%= @dog.bio %> </p>
-<p> Temperament: <%= @dog.temperament %> </p>
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <%= link_to "Edit this Dog", edit_dog_path, :class => 'button is-fullwidth is-primary' %>
+            </div>
+            <div class="column is-one-fifth">
+                <%= link_to "Cats", cats_path, :class => 'button is-fullwidth is-primary' %>
+            </div>
+            <div class="column is-one-fifth">
+                <%= link_to "Dogs", dogs_path, :class => 'button is-fullwidth is-primary' %>
+            </div>
+            <div class="column is-one-fifth">
+                <%= link_to "Delete this dog", dog_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
+            </div>
+        </div>
 
-<%= link_to "Edit this dog", edit_dog_path %>
 
-<%= link_to "Delete this Dog", dog_path(@dog), method: :delete %>
- <br><%= link_to "Back to the dog pound!", dogs_path %>
+        <%= image_tag @dog.picture %>
+
+        <p> Name: <%= @dog.name %> </p>
+        <p> Age: <%= @dog.age %> </p>
+        <p> City: <%= @dog.city %> </p>
+        <p> Breed: <%= @dog.breed %> </p>
+        <p> Bio: <%= @dog.bio %> </p>
+        <p> Temperament: <%= @dog.temperament %> </p>
+
+
+        <%= render 'comments/form' %>
+    </div>
+</section>

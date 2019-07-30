@@ -1,5 +1,16 @@
-<h1>Here are all the cats</h1>
+<section class="section">
+    <div class="container">
 
-<% @cats.each do |cat| %>
-<%= cat.name %>
-<% end %>
+        <h1>Here are all the cats</h1>
+
+        <% @cats.each do |cat| %>
+            <p> Name: <%= link_to cat.name, cat %> </p>
+            <p> City: <%= cat.city %> </p>
+            <p> Bio: <%= cat.bio %> </p>
+
+        <% end %>
+
+
+        <%= link_to "Create a new cat", new_cat_path %>
+    </div>        
+</section>

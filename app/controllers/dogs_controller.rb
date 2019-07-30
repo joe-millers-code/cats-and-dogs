@@ -7,6 +7,9 @@ class DogsController < ApplicationController
         end
     
         def show
+            @comment = Comment.new
+            @cats = Cat.all
+            @dogs = Dog.all
         end
     
         def new 
