@@ -17,16 +17,14 @@ class DogsController < ApplicationController
         end
     
         def create
-            @dog = Dog.new(dog_params)
-    
-            if  @dog.valid? 
-                @dog.save
-                redirect_to @dog
+            @dog = Dog.create(dog_params)
+            if @dog.valid? 
+              session[:dog_id] = @dog.id 
+              redirect_to dogs_path
             else 
-                flash[:errors] = @dog.errors.full_messages
-                redirect_to new_employee_path    
+              flash[:errors] = @dog.errors.full_messages
+              redirect_to new_dog_path
             end
-    
         end
     
         def edit 
@@ -56,6 +54,6 @@ class DogsController < ApplicationController
         end
     
         def dog_params
-            params.require(:dog).permit(:name, :age, :city, :breed, :bio, :temperament, :picture)
+            params.require(:dog).permit(:username, :password, :password_confirmation, :name, :age, :city, :breed, :bio, :temperament, :picture)
         end
 end
