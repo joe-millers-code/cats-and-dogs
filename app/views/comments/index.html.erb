@@ -1,3 +1,10 @@
-<% @comments.each do |comment| %>
-    <p> <%= link_to comment.name, comment %> </p>
-    <% end %>
+<section class="section">
+    <div class="container">
+
+        <% @comments.each do |comment| %>
+            <p> <%= link_to comment.content, comment %> </p>
+            <% end %>
+
+
+    </div>
+</section>

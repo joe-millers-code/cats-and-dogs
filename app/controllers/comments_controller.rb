@@ -6,6 +6,8 @@ class CommentsController < ApplicationController
     end
 
     def show
+        @dog = Dog.find(@comment.dog_id)
+        @cat = Cat.find(@comment.cat_id)
     end
 
     def new
@@ -21,7 +23,7 @@ class CommentsController < ApplicationController
         @dogs = Dog.all
         @cats = Cat.all
 
-        @comment = Member.new(comment_params)
+        @comment = Comment.new(comment_params)
         if @comment.valid?
             @comment.save
             redirect_to comment_path(@comment)
@@ -49,7 +51,7 @@ class CommentsController < ApplicationController
     private
 
     def comment_params
-        params.require(:comment).permit(:dog, :cat, :content)
+        params.require(:comment).permit(:dog_id, :cat_id, :content)
     end
 
     def find_comment
