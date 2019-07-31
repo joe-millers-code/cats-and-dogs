@@ -20,7 +20,8 @@ def create
   @cat = Cat.create(cat_params)
   if @cat.valid? 
     session[:cat_id] = @cat.id 
-    redirect_to dogs_path
+    flash[:message] = "Finish creating your profile!"
+    redirect_to edit_cat_path(@cat)
   else 
     flash[:errors] = @cat.errors.full_messages
     redirect_to new_cat_path

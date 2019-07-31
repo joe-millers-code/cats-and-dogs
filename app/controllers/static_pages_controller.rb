@@ -5,4 +5,8 @@ class StaticPagesController < ApplicationController
         @cats = Cat.all
     end
 
+    def register
+
+    end
+
 end
