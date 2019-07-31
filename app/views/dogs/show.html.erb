@@ -28,6 +28,45 @@
         <p> Temperament: <%= @dog.temperament %> </p>
 
 
-        <%= render 'comments/form' %>
+        <!-- Comment stream -->
+
+        <h1 class="title"> comments </h1>
+
+        <% @dog.comments.each do |comment| %>
+             <p><%= comment.content %> - from: <%= comment.cat.username %> </p>
+        <% end %>
+
+        <!-- Comment form -->
+        <% if flash[:errors] %> 
+            <ul>
+                <% flash[:errors].each do |err| %>
+                <li><%= err %></li>
+                <%end%>
+            </ul>
+        <% end%>
+
+        <%= form_for @comment do |f| %>
+            <% if @current_cat %>
+                <%= f.hidden_field :dog_id, value: @dog.id %>
+                <%= f.hidden_field :cat_id, value: @current_cat.id %>
+
+                <div class="field">
+                    <label class="label"><%= f.label :content, "Comment" %></label>
+                        <div class="control">
+                            <%= f.text_area :content, :class => 'textarea' %>
+                        </div>
+                </div>
+
+
+                <div class="columns">
+                    <div class="column is-one-fifth">
+                        <%= f.submit :class => 'button is-fullwidth is-primary' %>
+                    </div>
+                    <div class="column is-one-fifth">
+                        <%= link_to "Cancel", comments_path, :class => 'button is-fullwidth' %>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
     </div>
 </section>
