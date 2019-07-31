@@ -5,7 +5,7 @@
         <h1 class="title is-1">This is the show page for <%= @cat.name %>. </h1>
 
         <% if @cat.avatar.attached? %>
-          <image src="<%=(url_for(@cat.avatar))%>">
+          <img src="<%=(url_for(@cat.avatar))%>">
         <% end %>
 
         <div class="columns">
@@ -31,8 +31,46 @@
         <p> Bio: <%= @cat.bio %> </p>
         <p> Temperament: <%= @cat.temperament %> </p>
 
+    <!-- Comment stream -->
 
-        <%= render 'comments/form' %>
+    <h1 class="title"> comments </h1>
+
+    <% @cat.comments.each do |comment| %>
+        <p><%= comment.content %> - from: <%= comment.dog.username %> </p>
+    <% end %>
+
+    <!-- Comment form -->
+        <% if flash[:errors] %> 
+            <ul>
+                <% flash[:errors].each do |err| %>
+                <li><%= err %></li>
+                <%end%>
+            </ul>
+        <% end%>
+
+        <%= form_for @comment do |f| %>
+           <% if @current_dog %>
+                <%= f.hidden_field :dog_id, value: @current_dog.id %>
+                <%= f.hidden_field :cat_id, value: @cat.id %>
+
+                <div class="field">
+                    <label class="label"><%= f.label :content, "Comment" %></label>
+                        <div class="control">
+                            <%= f.text_area :content, :class => 'textarea' %>
+                        </div>
+                </div>
+
+
+                <div class="columns">
+                    <div class="column is-one-fifth">
+                        <%= f.submit :class => 'button is-fullwidth is-primary' %>
+                    </div>
+                    <div class="column is-one-fifth">
+                        <%= link_to "Cancel", comments_path, :class => 'button is-fullwidth' %>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
     </div>
 </section>
 

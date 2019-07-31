@@ -26,7 +26,12 @@ class CommentsController < ApplicationController
         @comment = Comment.new(comment_params)
         if @comment.valid?
             @comment.save
-            redirect_to comment_path(@comment)
+            if @current_dog
+                redirect_to cat_path(@comment.cat_id)
+            end
+            if @current_cat
+                redirect_to dog_path(@comment.dog_id)
+            end
         else
             flash[:errors] = @comment.errors.full_messages
             redirect_to new_comment_path
