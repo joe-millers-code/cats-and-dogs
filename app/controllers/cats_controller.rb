@@ -22,7 +22,7 @@ def create
     session[:cat_id] = @cat.id 
     flash[:message] = "Finish creating your profile!"
     redirect_to edit_cat_path(@cat)
-  else 
+  else
     flash[:errors] = @cat.errors.full_messages
     redirect_to new_cat_path
   end
@@ -47,7 +47,7 @@ end
 private
 
 def cat_params
-  params.require(:cat).permit(:password, :username, :password_confirmation, :name, :age, :city, :breed, :bio, :temperament, :picture)
+  params.require(:cat).permit(:password, :username, :password_confirmation, :name, :age, :city, :breed, :bio, :temperament, :picture, :avatar)
 
 end
 

@@ -21,6 +21,7 @@
 <%= f.label :temperament %>
 <%= f.text_field :temperament %>
 
-
-<%= f.submit %>
+<%= f.label "Profile Photo" %>
+<%= f.file_field :avatar %><br>
+<%= f.submit "Update Profile" %>
 <% end %>
