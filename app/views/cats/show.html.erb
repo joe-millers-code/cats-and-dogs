@@ -4,6 +4,10 @@
 
         <h1 class="title is-1">This is the show page for <%= @cat.name %>. </h1>
 
+        <% if @cat.avatar.attached? %>
+          <image src="<%=(url_for(@cat.avatar))%>">
+        <% end %>
+
         <div class="columns">
             <div class="column is-one-fifth">
                 <%= link_to "Edit this Cat", edit_cat_path, :class => 'button is-fullwidth is-primary' %>
@@ -18,9 +22,6 @@
                 <%= link_to "Delete this Cat", cat_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
             </div>
         </div>
-
-
-        <%= image_tag @cat.picture %>
 
         <p> Name: <%= @cat.name %> </p>
         <p> Age: <%= @cat.age %> </p>

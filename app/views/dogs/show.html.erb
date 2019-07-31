@@ -2,7 +2,9 @@
     <div class="container">
 
         <h1 class ='title is-1'>This is the show page for <%= @dog.name %>. </h1>
-
+          <% if @dog.avatar.attached? %>
+            <image src="<%=(url_for(@dog.avatar))%>">
+          <% end %>
         <div class="columns">
             <div class="column is-one-fifth">
                 <%= link_to "Edit this Dog", edit_dog_path, :class => 'button is-fullwidth is-primary' %>
@@ -17,9 +19,6 @@
                 <%= link_to "Delete this dog", dog_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
             </div>
         </div>
-
-
-        <%= image_tag @dog.picture %>
 
         <p> Name: <%= @dog.name %> </p>
         <p> Age: <%= @dog.age %> </p>
