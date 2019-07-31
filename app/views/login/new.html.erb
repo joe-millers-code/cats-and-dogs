@@ -1,3 +1,6 @@
+<% if flash["message"] %>
+<%= flash["message"]%>
+<% end %>
 
 
 <%= form_tag "/login" do %>
@@ -11,4 +14,3 @@
 <%= submit_tag "login" %>
 
 <% end %>
-

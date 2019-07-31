@@ -7,15 +7,13 @@
           <% end %>
         <div class="columns">
             <div class="column is-one-fifth">
-              <% if @logged_in && @dog.id == @current_dog.id %>
+              <% if @current_dog && @logged_in && @dog.id == @current_dog.id %>
                 <%= link_to "Edit this Dog", edit_dog_path, :class => 'button is-fullwidth is-primary' %>
                   <%= link_to "Delete this dog", dog_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
               <% end %>
                 <%= link_to "Cats", cats_path, :class => 'button is-fullwidth is-primary' %>
             </div>
-            <div class="column is-one-fifth">
-                <%= link_to "Dogs", dogs_path, :class => 'button is-fullwidth is-primary' %>
-            </div>
+          
         </div>
 
         <p> Name: <%= @dog.name %> </p>
@@ -35,7 +33,7 @@
         <% end %>
 
         <!-- Comment form -->
-        <% if flash[:errors] %> 
+        <% if flash[:errors] %>
             <ul>
                 <% flash[:errors].each do |err| %>
                 <li><%= err %></li>

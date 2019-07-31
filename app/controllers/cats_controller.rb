@@ -1,6 +1,9 @@
 class CatsController < ApplicationController
 
 before_action :find_cat, only: [:show, :edit, :update, :destroy]
+before_action :authorized, only: [:index, :show, :edit, :update, :destroy]
+before_action :cats_not_allowed_in_cats, only: [:index]
+before_action :cant_see_cats_profile, only: [:show]
 
 def index
   @cats = Cat.all

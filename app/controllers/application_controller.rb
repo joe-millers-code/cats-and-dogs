@@ -29,4 +29,29 @@ class ApplicationController < ActionController::Base
         session[:dog_id] = nil
     end
 
+    def cats_not_allowed_in_cats
+      if @current_cat
+        redirect_to dogs_path
+      end
+    end
+
+    def dogs_not_allowed_in_dogs
+      if @current_dog
+        redirect_to cats_path
+      end
+    end
+
+    def cant_see_cats_profile
+      if @cat != @current_cat
+        redirect_to @current_cat
+      end
+    end
+
+    def cant_see_dogs_profile
+      if @dog != @current_dog
+        redirect_to @current_dog
+
+      end
+    end
+
 end

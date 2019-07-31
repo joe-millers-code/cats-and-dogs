@@ -1,5 +1,8 @@
 class DogsController < ApplicationController
     before_action :find_dog, only: [:show, :edit, :update, :destroy]
+    before_action :authorized, only: [:index, :show, :edit, :update, :destroy]
+    before_action :dogs_not_allowed_in_dogs, only: [:index]
+    before_action :cant_see_dogs_profile, only: [:show]
 
 
         def index

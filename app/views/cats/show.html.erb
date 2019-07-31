@@ -10,7 +10,7 @@
 
         <div class="columns">
             <div class="column is-one-fifth">
-              <% if @logged_in && @cat.id == @current_cat.id%>
+              <% if @current_cat && @logged_in && @cat.id == @current_cat.id%>
                 <%= link_to "Edit Profile", edit_cat_path, :class => 'button is-fullwidth is-primary' %>
                   <%= button_to "Delete Profile", cat_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
                   <% end %>
@@ -40,7 +40,7 @@
     <% end %>
 
     <!-- Comment form -->
-        <% if flash[:errors] %> 
+        <% if flash[:errors] %>
             <ul>
                 <% flash[:errors].each do |err| %>
                 <li><%= err %></li>
