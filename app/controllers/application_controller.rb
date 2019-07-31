@@ -42,15 +42,14 @@ class ApplicationController < ActionController::Base
     end
 
     def cant_see_cats_profile
-      if @cat != @current_cat
+      unless @current_dog || @current_cat == @cat
         redirect_to @current_cat
       end
     end
 
     def cant_see_dogs_profile
-      if @dog != @current_dog
+      unless @current_cat || @current_dog == @dog
         redirect_to @current_dog
-
       end
     end
 

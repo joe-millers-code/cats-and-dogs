@@ -17,7 +17,7 @@
             </div>
 
             <div class="column is-one-fifth">
-                <%= link_to "See the nice Dogs", dogs_path, :class => 'button is-fullwidth is-primary' %>
+                <%= link_to "See the nice Cats", dogs_path, :class => 'button is-fullwidth is-primary' %>
             </div>
             <div class="column is-one-fifth">
 
@@ -36,7 +36,11 @@
     <h1 class="title"> comments </h1>
 
     <% @cat.comments.each do |comment| %>
-        <p><%= comment.content %> - from: <%= comment.dog.username %> </p>
+        <p><%= comment.content %> - Author: <%= comment.cat_id%>  Receiver:<%= comment.dog_id %>  </p>
+        <p><%= link_to "View this Comment", comment %></p>
+        <% if comment.dog == @current_dog %>
+            <%= button_to "Delete this Comment", comment, method: :delete%>
+        <%  end%>
     <% end %>
 
     <!-- Comment form -->
@@ -65,22 +69,8 @@
                     <div class="column is-one-fifth">
                         <%= f.submit :class => 'button is-fullwidth is-primary' %>
                     </div>
-                    <div class="column is-one-fifth">
-                        <%= link_to "Cancel", comments_path, :class => 'button is-fullwidth' %>
-                    </div>
                 </div>
             <% end %>
         <% end %>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-#

@@ -17,6 +17,8 @@ class CommentsController < ApplicationController
     end
 
     def edit
+        @dog = @comment.dog
+        @cat = @comment.cat
     end
 
     def create
@@ -25,11 +27,16 @@ class CommentsController < ApplicationController
 
         @comment = Comment.new(comment_params)
         if @comment.valid?
-            @comment.save
             if @current_dog
+                @comment.author = @current_dog
+                @comment.receiver = @comment.cat
+                @comment.save
                 redirect_to cat_path(@comment.cat_id)
             end
             if @current_cat
+                @comment.author = @current_cat
+                @comment.receiver = @comment.dog
+                @comment.save
                 redirect_to dog_path(@comment.dog_id)
             end
         else
@@ -49,7 +56,11 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment.destroy
-        redirect_to comments_path
+        if @current_dog
+            redirect_to cat_path(@comment.cat)
+        elsif @current_cat
+            redirect_to dog_path(@comment.dog)
+        end
     end
 
 

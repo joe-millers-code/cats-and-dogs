@@ -28,9 +28,13 @@
 
         <h1 class="title"> comments </h1>
 
-        <% @dog.comments.each do |comment| %>
-             <p><%= comment.content %> - from: <%= comment.cat.username %> </p>
-        <% end %>
+         <% @dog.comments.each do |comment| %>
+            <p><%= comment.content %> - from: <%= comment.cat.username %> </p>
+            <p><%= link_to "View this Comment", comment %></p>
+            <%if comment.cat == @current_cat %>
+                <%= button_to "Delete this Comment", comment, method: :delete%>
+            <% end %>
+         <% end %>
 
         <!-- Comment form -->
         <% if flash[:errors] %>
@@ -57,9 +61,6 @@
                 <div class="columns">
                     <div class="column is-one-fifth">
                         <%= f.submit :class => 'button is-fullwidth is-primary' %>
-                    </div>
-                    <div class="column is-one-fifth">
-                        <%= link_to "Cancel", comments_path, :class => 'button is-fullwidth' %>
                     </div>
                 </div>
             <% end %>
