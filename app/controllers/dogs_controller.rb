@@ -18,11 +18,11 @@ class DogsController < ApplicationController
 
         def create
             @dog = Dog.create(dog_params)
-            if @dog.valid? 
-              session[:dog_id] = @dog.id  
+            if @dog.valid?
+              session[:dog_id] = @dog.id
               flash[:message] = " Woof! Finish creating your profile!"
               redirect_to edit_dog_path(@dog)
-            else 
+            else
               flash[:errors] = @dog.errors.full_messages
               redirect_to new_dog_path
             end
@@ -43,8 +43,9 @@ class DogsController < ApplicationController
 
         def destroy
 
-            @dog.destroy
-            redirect_to dogs_path
+          logout
+          @dog.destroy
+          redirect_to home_path
           end
 
 

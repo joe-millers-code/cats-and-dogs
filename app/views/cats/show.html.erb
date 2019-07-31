@@ -34,3 +34,20 @@
         <%= render 'comments/form' %>
     </div>
 </section>
+
+<% if @logged_in && @cat.id == @current_cat.id %>
+<%= button_to "Delete Profile", @cat, method:"delete" %>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+#
