@@ -10,16 +10,17 @@
 
         <div class="columns">
             <div class="column is-one-fifth">
-                <%= link_to "Edit this Cat", edit_cat_path, :class => 'button is-fullwidth is-primary' %>
+              <% if @logged_in && @cat.id == @current_cat.id%>
+                <%= link_to "Edit Profile", edit_cat_path, :class => 'button is-fullwidth is-primary' %>
+                  <%= button_to "Delete Profile", cat_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
+                  <% end %>
+            </div>
+
+            <div class="column is-one-fifth">
+                <%= link_to "See the nice Dogs", dogs_path, :class => 'button is-fullwidth is-primary' %>
             </div>
             <div class="column is-one-fifth">
-                <%= link_to "Cats", cats_path, :class => 'button is-fullwidth is-primary' %>
-            </div>
-            <div class="column is-one-fifth">
-                <%= link_to "Dogs", dogs_path, :class => 'button is-fullwidth is-primary' %>
-            </div>
-            <div class="column is-one-fifth">
-                <%= link_to "Delete this Cat", cat_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
+
             </div>
         </div>
 
@@ -34,12 +35,6 @@
         <%= render 'comments/form' %>
     </div>
 </section>
-
-<% if @logged_in && @cat.id == @current_cat.id %>
-<%= button_to "Delete Profile", @cat, method:"delete" %>
-<% end %>
-
-
 
 
 
