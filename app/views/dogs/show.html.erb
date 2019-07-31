@@ -31,3 +31,8 @@
         <%= render 'comments/form' %>
     </div>
 </section>
+
+
+<% if @logged_in && @dog.id == @current_dog.id %>
+<%= button_to "Delete Profile", @dog, method:"delete" %>
+<% end %>

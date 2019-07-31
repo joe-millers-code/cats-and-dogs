@@ -7,6 +7,7 @@ def index
 end
 
 def show
+
   @comment = Comment.new
   @cats = Cat.all
   @dogs = Dog.all
@@ -18,8 +19,8 @@ end
 
 def create
   @cat = Cat.create(cat_params)
-  if @cat.valid? 
-    session[:cat_id] = @cat.id 
+  if @cat.valid?
+    session[:cat_id] = @cat.id
     flash[:message] = "Finish creating your profile!"
     redirect_to edit_cat_path(@cat)
   else
@@ -39,8 +40,9 @@ def update
 end
 
 def destroy
+  logout
   @cat.destroy
-  redirect_to cats_path
+  redirect_to home_path
 
 end
 
