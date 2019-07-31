@@ -18,8 +18,9 @@ end
 
 def create
   @cat = Cat.create(cat_params)
-  if @cat.valid?
-    session[:cat_id] = @cat.id
+  if @cat.valid? 
+    session[:cat_id] = @cat.id 
+    flash[:message] = "Finish creating your profile!"
     redirect_to edit_cat_path(@cat)
   else
     flash[:errors] = @cat.errors.full_messages
