@@ -1,7 +1,7 @@
 class LoginController < ApplicationController
+  
 
-
-    def new 
+    def new
 
     end
 
@@ -27,10 +27,11 @@ class LoginController < ApplicationController
                 redirect_to login_path
             end
         end
+
     end
 
-    def destroy 
-        logout 
+    def destroy
+        logout
         redirect_to home_path
     end
 
