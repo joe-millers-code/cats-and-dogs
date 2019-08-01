@@ -3,17 +3,35 @@
 
         <h1 class ='title is-1'>This is the show page for <%= @dog.name %>. </h1>
           <% if @dog.avatar.attached? %>
-            <image src="<%=(url_for(@dog.avatar))%>">
+            <image src="<%=(url_for(@dog.avatar))%>"> <!--needs attention -->
           <% end %>
+
+
+       <!-- reworked this section entirely -->
         <div class="columns">
             <div class="column is-one-fifth">
-              <% if @current_dog && @logged_in && @dog.id == @current_dog.id %>
-                <%= link_to "Edit this Dog", edit_dog_path, :class => 'button is-fullwidth is-primary' %>
-                  <%= link_to "Delete this dog", dog_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
-              <% end %>
-                <%= link_to "Cats", cats_path, :class => 'button is-fullwidth is-primary' %>
+                <% if @current_dog %> <!-- && @logged_in && @dog.id == @current_dog.id -->
+                    <%= link_to "Cats", cats_path, :class => 'button is-fullwidth is-primary' %> 
+                <% end %>
             </div>
-          
+            <div class="column is-one-fifth">
+                <% if @current_dog %>
+                    <%= link_to "Edit your Profile", edit_dog_path, :class => 'button is-fullwidth is-primary' %>
+                <% end %>
+            </div>
+            <div class="column is-one-fifth">
+                <% if @current_dog %>
+                    <%= link_to "Delete your profile", dog_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
+                <% end %>
+            </div>
+        </div>    
+
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <% if !@current_dog %>
+                    <%= link_to "Dogs", dogs_path, :class => 'button is-fullwidth is-primary' %> 
+                <% end %>
+            </div>
         </div>
 
         <p> Name: <%= @dog.name %> </p>
@@ -29,10 +47,14 @@
         <h1 class="title"> comments </h1>
 
          <% @dog.comments.each do |comment| %>
-            <p><%= comment.content %> - from: <%= comment.cat.username %> </p>
-            <p><%= link_to "View this Comment", comment %></p>
-            <%if comment.cat == @current_cat %>
-                <%= button_to "Delete this Comment", comment, method: :delete%>
+
+            <% if comment.sender != @dog.username %>
+
+                <p><%= comment.content %> - from: <%= link_to comment.cat.username, comment.cat %> </p>
+                <p><%= link_to "View this Comment", comment %></p>
+                <%if comment.cat == @current_cat %>
+                    <%= button_to "Delete this Comment", comment, method: :delete%>
+                <% end %>
             <% end %>
          <% end %>
 
@@ -49,6 +71,8 @@
             <% if @current_cat %>
                 <%= f.hidden_field :dog_id, value: @dog.id %>
                 <%= f.hidden_field :cat_id, value: @current_cat.id %>
+                <%= f.hidden_field :sender, value: @current_cat.username %> 
+                <%= f.hidden_field :receiver, value: @dog.username %> <!-- dont know why this isnt working yet-->
 
                 <div class="field">
                     <label class="label"><%= f.label :content, "Comment" %></label>

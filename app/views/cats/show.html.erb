@@ -2,25 +2,36 @@
     <div class="container">
 
 
-        <h1 class="title is-1">This is the show page for <%= @cat.name %>. </h1>
+<h1 class ='title is-1'>This is the show page for <%= @cat.name %>. </h1>
+          <% if @cat.avatar.attached? %>
+            <image src="<%=(url_for(@cat.avatar))%>"> <!--needs attention -->
+          <% end %>
 
-        <% if @cat.avatar.attached? %>
-          <img src="<%=(url_for(@cat.avatar))%>">
-        <% end %>
+<!-- reworked this section entirely -->
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <% if @current_cat %> <!-- && @logged_in && @cat.id == @current_cat.id -->
+                    <%= link_to "Dogs", dogs_path, :class => 'button is-fullwidth is-primary' %> 
+                <% end %>
+            </div>
+            <div class="column is-one-fifth">
+                <% if @current_cat %>
+                    <%= link_to "Edit your Profile", edit_cat_path, :class => 'button is-fullwidth is-primary' %>
+                <% end %>
+            </div>
+            <div class="column is-one-fifth">
+                <% if @current_cat %>
+                    <%= link_to "Delete your profile", cat_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
+                <% end %>
+            </div>
+          
+        </div>
 
         <div class="columns">
             <div class="column is-one-fifth">
-              <% if @current_cat && @logged_in && @cat.id == @current_cat.id%>
-                <%= link_to "Edit Profile", edit_cat_path, :class => 'button is-fullwidth is-primary' %>
-                  <%= button_to "Delete Profile", cat_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
-                  <% end %>
-            </div>
-
-            <div class="column is-one-fifth">
-                <%= link_to "See the nice Cats", dogs_path, :class => 'button is-fullwidth is-primary' %>
-            </div>
-            <div class="column is-one-fifth">
-
+                <% if !@current_cat %>
+                    <%= link_to "Cats", cats_path, :class => 'button is-fullwidth is-primary' %> 
+                <% end %>
             </div>
         </div>
 
@@ -36,12 +47,20 @@
     <h1 class="title"> comments </h1>
 
     <% @cat.comments.each do |comment| %>
-        <p><%= comment.content %> - Author: <%= comment.cat_id%>  Receiver:<%= comment.dog_id %>  </p>
-        <p><%= link_to "View this Comment", comment %></p>
-        <% if comment.dog == @current_dog %>
-            <%= button_to "Delete this Comment", comment, method: :delete%>
-        <%  end%>
+
+        <% if comment.sender != @cat.username %>
+
+            <p><%= comment.content %> - from: <%= link_to comment.dog.username, comment.dog %> </p>
+            <p><%= comment.content %> - Sender: <%=comment.dog_id%>  Receiver:<%= comment.cat_id %>  </p>
+            <p><%= link_to "View this Comment", comment %></p>
+
+            <% if comment.dog == @current_dog %>
+                <%= button_to "Delete this Comment", comment, method: :delete%>
+            <%  end%>
+
+        <% end %>
     <% end %>
+
 
     <!-- Comment form -->
         <% if flash[:errors] %>
@@ -56,6 +75,8 @@
            <% if @current_dog %>
                 <%= f.hidden_field :dog_id, value: @current_dog.id %>
                 <%= f.hidden_field :cat_id, value: @cat.id %>
+                <%= f.hidden_field :sender, value: @current_dog.username %> 
+                <%= f.hidden_field :receiver, value: @cat.username %> <!-- dont know why this isnt working yet-->
 
                 <div class="field">
                     <label class="label"><%= f.label :content, "Comment" %></label>

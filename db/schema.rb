@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2019_07_31_155214) do
   create_table "comments", force: :cascade do |t|
     t.integer "dog_id"
     t.integer "cat_id"
+    t.string "sender"
+    t.string "receiver"
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

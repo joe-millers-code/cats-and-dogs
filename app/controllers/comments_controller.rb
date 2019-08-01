@@ -28,14 +28,10 @@ class CommentsController < ApplicationController
         @comment = Comment.new(comment_params)
         if @comment.valid?
             if @current_dog
-                @comment.author = @current_dog
-                @comment.receiver = @comment.cat
                 @comment.save
                 redirect_to cat_path(@comment.cat_id)
             end
             if @current_cat
-                @comment.author = @current_cat
-                @comment.receiver = @comment.dog
                 @comment.save
                 redirect_to dog_path(@comment.dog_id)
             end
@@ -67,7 +63,7 @@ class CommentsController < ApplicationController
     private
 
     def comment_params
-        params.require(:comment).permit(:dog_id, :cat_id, :content)
+        params.require(:comment).permit(:dog_id, :cat_id, :content, :sender, :receiver)
     end
 
     def find_comment

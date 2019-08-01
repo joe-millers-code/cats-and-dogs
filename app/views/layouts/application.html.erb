@@ -12,7 +12,16 @@
 
   <body>
     <header>
+    
     <%= button_to "logout", "/logout", method: :delete %>
+
+    <% if @current_cat %>
+      Welcome back, <%= @current_cat.username%>
+    <% end %>
+
+    <% if @current_dog%>
+      Welcome back, <%= @current_dog.username %>
+    <% end %>
 
     </header>
     <%= yield %>
