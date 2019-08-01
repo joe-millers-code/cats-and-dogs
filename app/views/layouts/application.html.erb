@@ -7,9 +7,23 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'bulma', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+    
+    <%= button_to "logout", "/logout", method: :delete %>
+
+    <% if @current_cat %>
+      Welcome back, <%= @current_cat.username%>
+    <% end %>
+
+    <% if @current_dog%>
+      Welcome back, <%= @current_dog.username %>
+    <% end %>
+
+    </header>
     <%= yield %>
   </body>
 </html>

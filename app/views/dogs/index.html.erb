@@ -1,0 +1,16 @@
+<section class="section">
+    <div class="container">
+
+        <h1 class="title is-1">Dogs </h1>
+
+
+        <% @dogs.each do |dog| %>
+            <p> Name: <%= link_to dog.name, dog %> </p>
+            <p> City: <%= dog.city %> </p>
+            <p> Bio: <%= dog.bio %> </p>
+
+        <% end %>
+
+
+    </div>
+</section>

@@ -1,0 +1,97 @@
+<section class="section">
+    <div class="container">
+
+
+<h1 class ='title is-1'>This is the show page for <%= @cat.name %>. </h1>
+          <% if @cat.avatar.attached? %>
+            <image src="<%=(url_for(@cat.avatar))%>"> <!--needs attention -->
+          <% end %>
+
+<!-- reworked this section entirely -->
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <% if @current_cat %> <!-- && @logged_in && @cat.id == @current_cat.id -->
+                    <%= link_to "Dogs", dogs_path, :class => 'button is-fullwidth is-primary' %> 
+                <% end %>
+            </div>
+            <div class="column is-one-fifth">
+                <% if @current_cat %>
+                    <%= link_to "Edit your Profile", edit_cat_path, :class => 'button is-fullwidth is-primary' %>
+                <% end %>
+            </div>
+            <div class="column is-one-fifth">
+                <% if @current_cat %>
+                    <%= link_to "Delete your profile", cat_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
+                <% end %>
+            </div>
+          
+        </div>
+
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <% if !@current_cat %>
+                    <%= link_to "Cats", cats_path, :class => 'button is-fullwidth is-primary' %> 
+                <% end %>
+            </div>
+        </div>
+
+        <p> Name: <%= @cat.name %> </p>
+        <p> Age: <%= @cat.age %> </p>
+        <p> City: <%= @cat.city %> </p>
+        <p> Breed: <%= @cat.breed %> </p>
+        <p> Bio: <%= @cat.bio %> </p>
+        <p> Temperament: <%= @cat.temperament %> </p>
+
+    <!-- Comment stream -->
+
+    <h1 class="title"> comments </h1>
+
+    <% @cat.comments.each do |comment| %>
+
+        <% if comment.sender != @cat.username %>
+
+            <p><%= comment.content %> - from: <%= link_to comment.dog.username, comment.dog %> </p>
+            <p><%= comment.content %> - Sender: <%=comment.sender%>  Receiver:<%= comment.cat_id %>  </p>
+            <p><%= link_to "View this Comment", comment %></p>
+
+            <% if comment.dog == @current_dog %>
+                <%= button_to "Delete this Comment", comment, method: :delete%>
+            <%  end%>
+
+        <% end %>
+    <% end %>
+
+
+    <!-- Comment form -->
+        <% if flash[:errors] %>
+            <ul>
+                <% flash[:errors].each do |err| %>
+                <li><%= err %></li>
+                <%end%>
+            </ul>
+        <% end%>
+
+        <%= form_for @comment do |f| %>
+           <% if @current_dog %>
+                <%= f.hidden_field :dog_id, value: @current_dog.id %>
+                <%= f.hidden_field :cat_id, value: @cat.id %>
+                <%= f.hidden_field :sender, value: @current_dog.username %> 
+                <%= f.hidden_field :receiver, value: @cat.username %>
+
+                <div class="field">
+                    <label class="label"><%= f.label :content, "Comment" %></label>
+                        <div class="control">
+                            <%= f.text_area :content, :class => 'textarea' %>
+                        </div>
+                </div>
+
+
+                <div class="columns">
+                    <div class="column is-one-fifth">
+                        <%= f.submit :class => 'button is-fullwidth is-primary' %>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</section>
