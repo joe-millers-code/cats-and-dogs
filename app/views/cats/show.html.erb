@@ -1,11 +1,6 @@
 <section class="section">
     <div class="container">
-
-
-<h1 class ='title is-1'>This is the show page for <%= @cat.name %>. </h1>
-          <% if @cat.avatar.attached? %>
-            <image src="<%=(url_for(@cat.avatar))%>"> <!--needs attention -->
-          <% end %>
+          
 
 <!-- reworked this section entirely -->
         <div class="columns">
@@ -35,12 +30,25 @@
             </div>
         </div>
 
-        <p> Name: <%= @cat.name %> </p>
-        <p> Age: <%= @cat.age %> </p>
-        <p> City: <%= @cat.city %> </p>
-        <p> Breed: <%= @cat.breed %> </p>
-        <p> Bio: <%= @cat.bio %> </p>
-        <p> Temperament: <%= @cat.temperament %> </p>
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <% if @cat.avatar.attached? %>
+                    <!-- <figure class="image is-128x128"> -->
+                        <image src="<%=(url_for(@cat.avatar))%>"> 
+                    <!-- </figure> -->
+                <% end %> 
+            </div>
+
+                <div class ="column is-one-fifth">
+
+                    <p><strong> <%= @cat.name %> </strong> </p>
+                    <p> Age: <%= @cat.age %> </p>
+                    <p> City: <%= @cat.city %> </p>
+                    <p> Breed: <%= @cat.breed %> </p>
+                    <p> Temperament: <%= @cat.temperament %> </p>
+                    <p> Bio: <%= @cat.bio %> </p>
+                </div>
+        </div>
 
     <!-- Comment stream -->
 
@@ -63,6 +71,7 @@
 
 
     <!-- Comment form -->
+
         <% if flash[:errors] %>
             <ul>
                 <% flash[:errors].each do |err| %>

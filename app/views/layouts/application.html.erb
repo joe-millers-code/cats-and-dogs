@@ -12,11 +12,19 @@
 
   <body>
     <header>
-    
-    <%= button_to "logout", "/logout", method: :delete %>
+    <div class="navbar">
+      <figure class="image is-64x64">
+        <img class="is-rounded" src="<%=(url_for(@current_cat.avatar))%>">
+      </figure>
+    </div>
+
+
+    <% if @logged_in%>
+      <%= button_to "logout", "/logout", method: :delete %>
+    <% end %>
 
     <% if @current_cat %>
-      Welcome back, <%= @current_cat.username%>
+      Logged in as: <%= link_to @current_cat.username, cat_path(@current_cat.id) %>
     <% end %>
 
     <% if @current_dog%>
