@@ -76,7 +76,7 @@
                 <%= f.hidden_field :dog_id, value: @current_dog.id %>
                 <%= f.hidden_field :cat_id, value: @cat.id %>
                 <%= f.hidden_field :sender, value: @current_dog.username %> 
-                <%= f.hidden_field :receiver, value: @cat.username %> <!-- dont know why this isnt working yet-->
+                <%= f.hidden_field :receiver, value: @cat.username %> <!-- dont know why this isnt working yet - if this works in the morning its becuase i removed the attr_accessor from teh model-->
 
                 <div class="field">
                     <label class="label"><%= f.label :content, "Comment" %></label>
