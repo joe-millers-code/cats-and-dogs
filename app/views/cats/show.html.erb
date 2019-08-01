@@ -61,7 +61,6 @@
         <% if comment.sender != @cat.username %>
 
             <p><%= comment.content %> - from: <%= link_to comment.dog.username, comment.dog %> </p>
-            <p><%= comment.content %> - Sender: <%=comment.sender%>  Receiver:<%= comment.cat_id %>  </p>
             <p><%= link_to "View this Comment", comment %></p>
 
             <% if comment.dog == @current_dog %>

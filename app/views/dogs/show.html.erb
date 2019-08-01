@@ -1,13 +1,6 @@
 <section class="section">
     <div class="container">
 
-        <h1 class ='title is-1'>This is the show page for <%= @dog.name %>. </h1>
-          <% if @dog.avatar.attached? %>
-            <image src="<%=(url_for(@dog.avatar))%>"> <!--needs attention -->
-            <% else %>
-            <%=image_tag("defaultdog.png")%>
-            <% end %>
-
 
        <!-- reworked this section entirely -->
         <div class="columns">
@@ -36,13 +29,27 @@
             </div>
         </div>
 
-        <p> Name: <%= @dog.name %> </p>
-        <p> Age: <%= @dog.age %> </p>
-        <p> City: <%= @dog.city %> </p>
-        <p> Breed: <%= @dog.breed %> </p>
-        <p> Bio: <%= @dog.bio %> </p>
-        <p> Temperament: <%= @dog.temperament %> </p>
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <% if @dog.avatar.attached? %>
+                    <!-- <figure class="image is-128x128"> -->
+                        <image src="<%=(url_for(@dog.avatar))%>"> 
+                    <% else %> 
+                    <%=image_tag("defaultdog.png")%>
+                    <!-- </figure> -->
+                <% end %> 
+            </div>
 
+                <div class ="column is-one-fifth" >
+                
+                    <p><strong><%= @dog.name %></strong></p>
+                    <p> Age: <%= @dog.age %> </p>
+                    <p> City: <%= @dog.city %> </p>
+                    <p> Breed: <%= @dog.breed %> </p>
+                    <p> Temperament: <%= @dog.temperament %> </p>
+                    <p> Bio: <%= @dog.bio %> </p>
+                </div>
+        </div>
 
         <!-- Comment stream -->
 
