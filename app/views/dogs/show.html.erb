@@ -51,21 +51,34 @@
                 </div>
         </div>
 
-        <!-- Comment stream -->
-
-        <h1 class="title"> comments </h1>
-
-         <% @dog.comments.each do |comment| %>
-
+       <% @dog.comments.each do |comment| %>
             <% if comment.sender != @dog.username %>
 
-                <p><%= comment.content %> - from: <%= link_to comment.cat.username, comment.cat %> </p>
-                <p><%= link_to "View this Comment", comment %></p>
-                <%if comment.cat == @current_cat %>
-                    <%= button_to "Delete this Comment", comment, method: :delete%>
-                <% end %>
+                <article class="media box">
+                    <figure class="media-left">
+                        <p class="header-image">
+                        <img src="<%=(url_for(comment.cat.avatar))%>">
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong><%= link_to comment.cat.username, comment.cat %></strong> <small><%=comment.created_at.to_date%></small>
+                                <br>
+                                <%= comment.content %>
+                            </p>
+                        </div>
+                    </div>
+
+                    <% if comment.cat == @current_cat %>
+                        <div class="media-right">
+                            <%= link_to "Delete this Comment", comment, method: :delete, :class => "delete"%>
+                        </div>
+                    <% end %>
+                </article>
+
             <% end %>
-         <% end %>
+        <% end %>
 
         <!-- Comment form -->
         <% if flash[:errors] %>
