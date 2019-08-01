@@ -1,4 +1,5 @@
 class Cat < ApplicationRecord
+
     has_one_attached :avatar
 
     validates_uniqueness_of :username
