@@ -19,12 +19,16 @@
               <% if @current_dog.avatar.attached? %>
                 <div class ="navbar-brand">
                     <a href="<%= dog_path(@current_dog.id)%>"><img class="header-image" src="<%=(url_for(@current_dog.avatar))%>"</a>
+                    <%else%>
+                    <a href="<%= dog_path(@current_dog.id)%>"><img class="header-image" src="<%= asset_path('defaultdog.png')%>"></a>
                 </div>
               <% end %>
           <% elsif @current_cat %>
               <% if @current_cat.avatar.attached? %>
                 <div class ="navbar-brand">
                   <a href="<%= cat_path(@current_cat.id)%>"><img class="header-image" src="<%=(url_for(@current_cat.avatar))%>"</a>
+                  <%else%>
+                    <a href="<%= cat_path(@current_cat.id)%>"><img class="header-image" src="<%= asset_path('defaultcat.png')%>"></a>
                 </div>
               <% end %>
           <% else %>
