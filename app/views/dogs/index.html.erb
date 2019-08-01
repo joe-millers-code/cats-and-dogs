@@ -2,7 +2,7 @@
     <div class="columns">
 
      <% @dogs.each do |dog| %>
-        <div class = "column is-one-fifth">
+        <div class = "column">
             <% if dog.avatar.attached? %>
               <image src="<%=(url_for(dog.avatar))%>"> 
             <% else %>
@@ -12,7 +12,9 @@
             <p> City: <%= dog.city %> </p>
             <p> Bio: <%= dog.bio %> </p>
         </div>
+
     <% end %>
 
     </div>        
 </section>
+
