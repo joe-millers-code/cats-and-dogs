@@ -4,7 +4,9 @@
         <h1 class ='title is-1'>This is the show page for <%= @dog.name %>. </h1>
           <% if @dog.avatar.attached? %>
             <image src="<%=(url_for(@dog.avatar))%>"> <!--needs attention -->
-          <% end %>
+            <% else %>
+            <%=image_tag("defaultdog.png")%>
+            <% end %>
 
 
        <!-- reworked this section entirely -->
