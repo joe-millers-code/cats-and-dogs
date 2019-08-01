@@ -1,13 +1,26 @@
 <section class="section">
     <div class="container">
 
-        <h1>Welcome? Returning User?</h1>
+        <header class="welcome">Welcome to Cats & Dogs! Where we do not let little differences get in the way of True Love!</header>
+<br>
 
 
-        <%= link_to 'login', login_path %>
 
-        <h2> New User? </h2>
-        <%= link_to 'Register', register_path %>
-    
+
+
     </div>
+
+    <div class="home_pic">
+      <img src="<%= asset_path ('cat_dog.jpg') %>">
+    </div>
+    <div class="credentials">
+
+
+    <h1>Are you a returning user?  </h1>
+
+    <h1>Please <%= link_to 'login', login_path, :class => "button is-small is-primary" %></h1>
+
+
+    <h2> Are you a new user? Welcome!<br> Please <%= link_to 'Register', register_path, :class => "button is-small is-primary" %> to find your soulmate 💕 </h2>
+</div>
 </section>
