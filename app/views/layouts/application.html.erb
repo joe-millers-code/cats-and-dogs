@@ -14,7 +14,6 @@
     <header>
     <div class="navbar">
       <figure class="image is-64x64">
-        <img class="is-rounded" src="<%=(url_for(@current_cat.avatar))%>">
       </figure>
     </div>
 
@@ -23,9 +22,7 @@
       <%= button_to "logout", "/logout", method: :delete %>
     <% end %>
 
-    <% if @current_cat %>
-      Logged in as: <%= link_to @current_cat.username, cat_path(@current_cat.id) %>
-    <% end %>
+ 
 
     <% if @current_dog%>
       Welcome back, <%= @current_dog.username %>

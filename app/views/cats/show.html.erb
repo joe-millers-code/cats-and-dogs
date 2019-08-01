@@ -35,6 +35,8 @@
                 <% if @cat.avatar.attached? %>
                     <!-- <figure class="image is-128x128"> -->
                         <image src="<%=(url_for(@cat.avatar))%>"> 
+                    <% else %> 
+                    <%=image_tag("defaultcat.png")%>
                     <!-- </figure> -->
                 <% end %> 
             </div>

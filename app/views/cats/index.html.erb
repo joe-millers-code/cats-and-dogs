@@ -1,13 +1,17 @@
 <section class="section">
-    <div class="container">
-
-        <h1>Here are all the cats</h1>
+    <div class="columns">
 
         <% @cats.each do |cat| %>
+        <div class = "column is-one-fifth">
+        <% if cat.avatar.attached? %>
+            <image src="<%=(url_for(cat.avatar))%>"> 
+        <% else %>
+            <%=image_tag("defaultcat.png")%>
+                <% end %> 
             <p> Name: <%= link_to cat.name, cat %> </p>
             <p> City: <%= cat.city %> </p>
             <p> Bio: <%= cat.bio %> </p>
-
+        </div>
         <% end %>
 
     </div>        
