@@ -12,21 +12,35 @@
 
   <body>
     <header>
-    <div class="navbar">
-      <figure class="image is-64x64">
-      </figure>
-    </div>
+    <!-- nav bar -->
+
+      <nav class="navbar is-light">
+          <% if @current_dog%>
+              <% if @current_dog.avatar.attached? %>
+                <div class ="navbar-brand">
+                    <a href="<%= dog_path(@current_dog.id)%>"><img class="header-image" src="<%=(url_for(@current_dog.avatar))%>"</a>
+                </div>
+              <% end %>
+          <% elsif @current_cat %>
+              <% if @current_cat.avatar.attached? %>
+                <div class ="navbar-brand">
+                  <a href="<%= cat_path(@current_cat.id)%>"><img class="header-image" src="<%=(url_for(@current_cat.avatar))%>"</a>
+                </div>
+              <% end %>
+          <% else %>
+            <div class ="navbar-brand">
+              <img class="header-image" src= "<%= asset_path('c&dlogo.jpg')%>"%>
+            </div>
+          <% end %>
 
 
-    <% if @logged_in%>
-      <%= button_to "logout", "/logout", method: :delete %>
-    <% end %>
+        <% if @logged_in%>
+            <%= link_to "logout", "/logout", method: :delete, :class => 'button is-small is-primary' %>
+        <% end %>
+      </nav>
 
- 
 
-    <% if @current_dog%>
-      Welcome back, <%= @current_dog.username %>
-    <% end %>
+      <!-- nav bar end -->
 
     </header>
     <%= yield %>
