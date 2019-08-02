@@ -1,0 +1,23 @@
+<section class="section">
+    <div class="container">
+        <h1 class="title is-1">Comment Show Page</h1>
+
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <%= link_to "Edit this Comment", edit_comment_path, :class => 'button is-fullwidth is-primary' %>
+            </div>
+            <div class="column is-one-fifth">
+                <%= link_to "Cats", cats_path, :class => 'button is-fullwidth is-primary' %>
+            </div>
+        </div>
+
+        <div class='box'>
+            <p>Dog: <%= @dog.name%>
+            <p>Cat: <%= link_to @cat.name, @comment.cat%>
+            <p>Comment: <%= @comment.content%></p>
+        <div>
+
+        
+
+    </div>
+</section>

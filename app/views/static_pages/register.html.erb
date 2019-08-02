@@ -1,0 +1,32 @@
+<section class="section">
+  <div class="container">  
+    
+    <header class="welcome">
+      Are you a Dog or a Cat?
+    </header>
+
+
+    <span class="button">
+    <%= link_to "Cat", new_cat_path, :class => "button is-small is-primary" %>
+    <br>
+
+    <%= link_to "Dog", new_dog_path, :class => "button is-small is-primary" %>
+    </span>
+    <br>
+    <header class="welcome">
+    Check out some of our success stories!
+    </header>
+    <br>
+    <h1>Here is Pamper and Aly</h1>
+    <img class ="success" src="<%= asset_path ('wedding.png') %>"></span>
+    <br>
+    <p>Pamper and Aly met for the first time at Pamper's favorite dog park.
+    At first Aly wasn't conviced because she did not think it was a good idea for a cat to hang out at
+    a dog park. But she felt safe with Pamper. That's when she knew!</p>
+    <br>
+    <h1>Here is Bert right before he saw his beautiful dog partner!</h1>
+    <img class ="success" src="<%= asset_path ('cat_bert.jpg') %>">
+    <p>When asked for a quick bio, Bert was just speachless. The only thing he could say wes purrrrrrrrr</p>
+  
+  </div>
+</section>

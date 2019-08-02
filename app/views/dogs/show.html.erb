@@ -1,0 +1,115 @@
+<section class="section">
+    <div class="container">
+
+
+       <!-- reworked this section entirely -->
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <% if @current_dog %> <!-- && @logged_in && @dog.id == @current_dog.id -->
+                    <%= link_to "Cats", cats_path, :class => 'button is-fullwidth is-primary' %> 
+                <% end %>
+            </div>
+            <div class="column is-one-fifth">
+                <% if @current_dog %>
+                    <%= link_to "Edit your Profile", edit_dog_path, :class => 'button is-fullwidth is-primary' %>
+                <% end %>
+            </div>
+            <div class="column is-one-fifth">
+                <% if @current_dog %>
+                    <%= link_to "Delete your profile", dog_path, method: :delete, :class => 'button is-fullwidth is-danger' %>
+                <% end %>
+            </div>
+        </div>    
+
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <% if !@current_dog %>
+                    <%= link_to "Dogs", dogs_path, :class => 'button is-fullwidth is-primary' %> 
+                <% end %>
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="column is-one-fifth">
+                <% if @dog.avatar.attached? %>
+                    <!-- <figure class="image is-128x128"> -->
+                        <image src="<%=(url_for(@dog.avatar))%>"> 
+                    <% else %> 
+                    <%=image_tag("defaultdog.png")%>
+                    <!-- </figure> -->
+                <% end %> 
+            </div>
+
+                <div class ="column" >
+                
+                    <p><strong><%= @dog.name %></strong></p>
+                    <p> Age: <%= @dog.age %> </p>
+                    <p> City: <%= @dog.city %> </p>
+                    <p> Breed: <%= @dog.breed %> </p>
+                    <p> Temperament: <%= @dog.temperament %> </p>
+                    <p> Bio: <%= @dog.bio %> </p>
+                </div>
+        </div>
+
+       <% @dog.comments.each do |comment| %>
+            <% if comment.sender != @dog.username %>
+
+                <article class="media box">
+                    <figure class="media-left">
+                        <p class="header-image">
+                        <img src="<%=(url_for(comment.cat.avatar))%>">
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong><%= link_to comment.cat.username, comment.cat %></strong> <small><%=comment.created_at.to_date%></small>
+                                <br>
+                                <%= comment.content %>
+                            </p>
+                        </div>
+                    </div>
+
+                    <% if comment.cat == @current_cat %>
+                        <div class="media-right">
+                            <%= link_to "Delete this Comment", comment, method: :delete, :class => "delete"%>
+                        </div>
+                    <% end %>
+                </article>
+
+            <% end %>
+        <% end %>
+
+        <!-- Comment form -->
+        <% if flash[:errors] %>
+            <ul>
+                <% flash[:errors].each do |err| %>
+                <li><%= err %></li>
+                <%end%>
+            </ul>
+        <% end%>
+
+        <%= form_for @comment do |f| %>
+            <% if @current_cat %>
+                <%= f.hidden_field :dog_id, value: @dog.id %>
+                <%= f.hidden_field :cat_id, value: @current_cat.id %>
+                <%= f.hidden_field :sender, value: @current_cat.username %> 
+                <%= f.hidden_field :receiver, value: @dog.username %> <!-- dont know why this isnt working yet-->
+
+                <div class="field">
+                    <label class="label"><%= f.label :content, "Comment" %></label>
+                        <div class="control">
+                            <%= f.text_area :content, :class => 'textarea' %>
+                        </div>
+                </div>
+
+
+                <div class="columns">
+                    <div class="column is-one-fifth">
+                        <%= f.submit :class => 'button is-fullwidth is-primary' %>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</section>
