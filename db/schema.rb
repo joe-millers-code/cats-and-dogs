@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2019_08_01_160159) do
   end
 
   create_table "dogs", force: :cascade do |t|
+
     t.string "username"
     t.string "password_digest"
     t.string "name"
