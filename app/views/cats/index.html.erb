@@ -2,7 +2,7 @@
     <div class="columns">
 
         <% @cats.each do |cat| %>
-    <div class = "column is-one-fifth">
+    <div class = "column">
         <% if cat.avatar.attached? %>
             <image src="<%=(url_for(cat.avatar))%>"> 
         <% else %>

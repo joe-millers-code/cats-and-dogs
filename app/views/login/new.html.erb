@@ -1,41 +1,45 @@
-<header class="welcome">
-  Welcome back! Please log in below to continue to look for your soul mate! 😻 🐶
-</header>
+ <section class="section"> 
+  <div class="container">
+    <header class="welcome">
+      Welcome back! Please log in below to continue to look for your soul mate! 😻 🐶
+    </header>
 
-<br>
-
-
-<% if flash["message"] %>
-<%= flash["message"]%>
-<% end %>
+    <br>
 
 
-<%= form_tag "/login" do %>
-
-<%= label_tag :username %>
-<%= text_field_tag :username %>
-
-<%= label_tag :password %>
-<%= password_field_tag :password %>
-
-<%= submit_tag "login" %>
-
-<% end %>
-<br>
-<br>
-<header class="welcome">
-  Check out some useful articles below
-</header>
-
-<img class ="success" src="<%= asset_path ('puppy.jpg') %>">
-<br>
-<a href="https://www.americanhumane.org/blog/benefits-of-owning-a-dog/?gclid=CjwKCAjwm4rqBRBUEiwAwaWjjP7tEk2I6uHPyFZNWRl9kdabmlU7m1rMNAD0wDD3LaiRH4Onm2sq8BoCJ4AQAvD_BwE">Why to fall in love with a dog.</a>
-<br>
-<br>
-<img class ="success" src="<%= asset_path ('kitten-report.jpg') %>">
-<br>
-<a href="http://karmacatzendog.org/2016/12/16/22-ways-cats-make-you-happier-healthier/">Why to fall in love with a cat.</a>
+    <% if flash["message"] %>
+      <%= flash["message"]%>
+    <% end %>
 
 
+    <%= form_tag "/login" do %>
 
-<!-- error messages not telling me i cant duplicate usernames -->
+    <%= label_tag :username %>
+    <%= text_field_tag :username %>
+
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+
+    <%= submit_tag "login" %>
+
+    <% end %>
+    <br>
+    <br>
+    <header class="welcome">
+      Check out some useful articles below
+    </header>
+
+    <img class ="success" src="<%= asset_path ('puppy.jpg') %>">
+    <br>
+      <a href="https://www.americanhumane.org/blog/benefits-of-owning-a-dog/?gclid=CjwKCAjwm4rqBRBUEiwAwaWjjP7tEk2I6uHPyFZNWRl9kdabmlU7m1rMNAD0wDD3LaiRH4Onm2sq8BoCJ4AQAvD_BwE">Why to fall in love with a dog.</a>
+    <br>
+    <br>
+      <img class ="success" src="<%= asset_path ('kitten-report.jpg') %>">
+    <br>
+      <a href="http://karmacatzendog.org/2016/12/16/22-ways-cats-make-you-happier-healthier/">Why to fall in love with a cat.</a>
+
+
+
+    <!-- error messages not telling me i cant duplicate usernames -->
+  </div>
+</section>
